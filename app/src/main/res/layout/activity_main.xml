@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/qemuprop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="36dp"
+        android:text="QEMU PROP"
+        app:layout_constraintStart_toEndOf="@+id/qufile"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/deviceid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_toRightOf="@+id/qemuprop"
+        android:text="Device id"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ptrace"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/qemupipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:layout_toRightOf="@+id/deviceid"
+        android:text="qemu pipe"
+        app:layout_constraintStart_toEndOf="@+id/IMSI"
+        app:layout_constraintTop_toBottomOf="@+id/qemuprop"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/defaultnumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/qemuprop"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
+        android:text="df Number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/IMSI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/defaultnumber"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="28dp"
+        android:layout_toRightOf="@+id/defaultnumber"
+        android:text="IMSI"
+        app:layout_constraintStart_toEndOf="@+id/qemu_task"
+        app:layout_constraintTop_toBottomOf="@+id/qufile"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/build"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/IMSI"
+        android:layout_toRightOf="@+id/IMSI"
+        android:text="Build"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gyfile"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/operator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/defaultnumber"
+        android:layout_marginStart="25dp"
+        android:text="Operator"
+        app:layout_constraintStart_toEndOf="@+id/SMC"
+        app:layout_constraintTop_toBottomOf="@+id/Monkey"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/qudriver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/operator"
+        android:layout_marginStart="24dp"
+        android:layout_toRightOf="@+id/operator"
+        android:text="QuDriver"
+        app:layout_constraintStart_toEndOf="@+id/sensor"
+        app:layout_constraintTop_toBottomOf="@+id/operator"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/qufile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/qudriver"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="36dp"
+        android:layout_toRightOf="@+id/qudriver"
+        android:text="QuFile"
+        app:layout_constraintStart_toEndOf="@+id/defaultnumber"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/gyfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/qudriver"
+        android:layout_marginStart="6dp"
+        android:text="gyfile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bkpt"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/Monkey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/gyfile"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_toRightOf="@+id/gyfile"
+        android:text="Monkey"
+        app:layout_constraintStart_toEndOf="@+id/debugger"
+        app:layout_constraintTop_toBottomOf="@+id/qemupipe"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/debugger"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/Monkey"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="16dp"
+        android:layout_toRightOf="@+id/Monkey"
+        android:text="debugger"
+        app:layout_constraintStart_toEndOf="@+id/bkpt"
+        app:layout_constraintTop_toBottomOf="@+id/IMSI"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/ptrace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gyfile"
+        android:text="@string/ptrace"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/build"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/eth0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/ptrace"
+        android:layout_marginStart="27dp"
+        android:layout_toRightOf="@+id/ptrace"
+        android:text="eth0"
+        app:layout_constraintStart_toEndOf="@+id/taintdroid"
+        app:layout_constraintTop_toBottomOf="@+id/qudriver"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/SMC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/eth0"
+        android:layout_marginStart="42dp"
+        android:layout_toRightOf="@+id/eth0"
+        android:text="SMC"
+        app:layout_constraintStart_toEndOf="@+id/gyfile"
+        app:layout_constraintTop_toBottomOf="@+id/debugger"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/taintdroid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ptrace"
+        android:layout_marginStart="11dp"
+        android:text="taintdroid"
+        app:layout_constraintStart_toEndOf="@+id/deviceid"
+        app:layout_constraintTop_toBottomOf="@+id/sensor"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/sensor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/taintdroid"
+        android:layout_marginStart="48dp"
+        android:layout_toRightOf="@+id/taintdroid"
+        android:text="sensor"
+        app:layout_constraintStart_toEndOf="@+id/build"
+        app:layout_constraintTop_toBottomOf="@+id/SMC"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/qemu_task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/sensor"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="30dp"
+        android:layout_toRightOf="@+id/sensor"
+        android:text="qemu_task"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/defaultnumber"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/bkpt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/SMC"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_toRightOf="@+id/SMC"
+        android:text="bkpt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/qemu_task"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/taintdroid"
+        android:layout_marginStart="44dp"
+        android:text="Detect:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deviceid"
+        app:layout_constraintVertical_bias="0.271"
+        tools:ignore="MissingConstraints" />
+
+
+</android.support.constraint.ConstraintLayout>

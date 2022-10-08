@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">vmtest3</string>
+    <string name="ptrace">ptrace</string>
+</resources>
