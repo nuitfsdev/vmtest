@@ -1,9 +1,14 @@
 package com.example.vmtest3;
 
+import static android.Manifest.permission.READ_PHONE_NUMBERS;
+import static android.Manifest.permission.READ_PHONE_STATE;
+import static android.Manifest.permission.READ_PRECISE_PHONE_STATE;
+import static android.Manifest.permission.READ_SMS;
 import static android.hardware.Sensor.TYPE_ORIENTATION;
 
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -12,6 +17,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Debug;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
@@ -77,15 +83,14 @@ public class Utils {
             "012345678912345"};
 
     public static boolean hasKnownDeviceId(TextView textView, AppCompatActivity act, Context context) {
-
         if (PermissionUtils.isLacksOfPermission(context, PermissionUtils.PERMISSION[0])) {
             ActivityCompat.requestPermissions(act, PermissionUtils.PERMISSION, 0x12);
             Log.d("test", "No permission");
             return false;
         } else {
-            TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-
-            String deviceId = telephonyManager.getDeviceId();
+            //TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+            //String deviceId = telephonyManager.getDeviceId();
+            String deviceId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
             Log.d("deviceId:", deviceId);
 
             for (String known_deviceId : known_device_ids) {
@@ -124,12 +129,15 @@ public class Utils {
             "+15555215568", "+15555215570", "+15555215572", "+15555215574", "+15555215576", "+15555215578",
             "+15555215580", "+15555215582", "+15555215584",};
 
-    public  void askPermission(){
+    public void askPermission() {
 
     }
+
     public static boolean hasKnownPhoneNumber(TextView textView, AppCompatActivity act, Context context) {
-        if (PermissionUtils.isLacksOfPermission(context, PermissionUtils.PERMISSION[0])) {
-            ActivityCompat.requestPermissions(act, PermissionUtils.PERMISSION, 0x12);
+        if((ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_NUMBERS) != PackageManager.PERMISSION_GRANTED))
+        {
+            ActivityCompat.requestPermissions(act, new String[]{READ_PHONE_NUMBERS}, 0x12);
+
             Log.d("test", "No permission");
             return false;
         } else {
@@ -153,11 +161,12 @@ public class Utils {
     private static String[] known_imsi_ids = {"310260000000000" // default IMSI
     };
     public static boolean hasKnownImsi(TextView textView, AppCompatActivity act, Context context) {
-        if (PermissionUtils.isLacksOfPermission(context, PermissionUtils.PERMISSION[0])) {
-            ActivityCompat.requestPermissions(act, PermissionUtils.PERMISSION, 0x12);
+        /*if (ActivityCompat.checkSelfPermission(context, READ_PRECISE_PHONE_STATE) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(act, new String[]{READ_PRECISE_PHONE_STATE}, 0x12);
+            textView.setText("Can't access");
             Log.d("test", "No permission");
             return false;
-        } else {
+        } else {*/
             TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
             String imsi = telephonyManager.getSubscriberId();
             for (String known_imsi : known_imsi_ids) {
@@ -170,7 +179,7 @@ public class Utils {
             Log.d("test","No default IMSI!");
             textView.setText("Not find IMSI : " + imsi);
             return false;
-        }
+        //}
     }
 
     //Build
@@ -185,12 +194,12 @@ public class Utils {
         // /proc). "goldfish"
         String MODEL = android.os.Build.MODEL; // The end-user-visible name for the end product. "sdk"
         String PRODUCT = android.os.Build.PRODUCT; // The name of the overall product.
-        if ((BOARD.compareTo("unknown") == 0) /* || (BOOTLOADER.compareTo("unknown") == 0) */
-                || (BRAND.compareTo("generic") == 0) || (DEVICE.compareTo("generic") == 0)
-                || (MODEL.compareTo("sdk") == 0) || (PRODUCT.compareTo("sdk") == 0)
-                || (HARDWARE.compareTo("goldfish") == 0)) {
+        if ((BOARD.contains("unknown") == true) /* || (BOOTLOADER.compareTo("unknown") == 0) */
+                || (BRAND.contains("generic") == true) || (DEVICE.contains("generic") == true)
+                || (MODEL.contains("sdk") == true) || (PRODUCT.contains("sdk") == true)
+                || (HARDWARE.contains("goldfish") == true)) {
             Log.d("find:","Build");
-            textView.setText("BUILD TESTING:" + "\n" + "BOARD:" + BOARD + "\n" + "BRAND:" + BRAND + "\n" +
+            textView.setText("An emulator build! BUILD TESTING:" + "\n" + "BOARD:" + BOARD + "\n" + "BRAND:" + BRAND + "\n" +
                     "DEVICE:" + DEVICE + "\n" + "MODEL:" + MODEL + "\n"
                     + "PRODUCT:" + PRODUCT + "\n" + "HARDWARE:" + HARDWARE + "\n");
             return true;
@@ -250,6 +259,7 @@ public class Utils {
                 return true;
             }
         }
+        textView.setText("Not find qemu file" );
         return false;
     }
 
